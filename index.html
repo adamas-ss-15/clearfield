@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLEARFIELD｜特定災害復旧支援事業団</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap');
+
+  :root {
+    --navy: #1B2A4A;
+    --navy-dark: #0F1B33;
+    --navy-light: #2C3E63;
+    --blue: #2D5F8A;
+    --blue-light: #4A87B9;
+    --blue-pale: #EDF2F8;
+    --border: #D0D5DE;
+    --border-light: #E8EBF0;
+    --text: #333;
+    --text-light: #666;
+    --text-faint: #999;
+    --bg: #F7F8FA;
+    --white: #fff;
+    --accent: #C4A23B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 14px;
+  }
+
+  /* ====== GOV HEADER (top info bar) ====== */
+  .gov-top-bar {
+    background: var(--navy-dark);
+    padding: 0 24px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.5px;
+  }
+
+  .gov-top-bar-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 28px;
+  }
+
+  .gov-top-bar a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    margin-left: 16px;
+  }
+
+  .gov-top-bar a:hover { color: rgba(255,255,255,0.7); }
+
+  .font-size-btns span {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 4px;
+    padding: 0 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    border-radius: 2px;
+  }
+
+  /* ====== HEADER ====== */
+  header {
+    background: var(--white);
+    border-bottom: 3px solid var(--navy);
+    padding: 0 24px;
+  }
+
+  .header-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: var(--navy);
+  }
+
+  .logo-crest {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1px;
+    position: relative;
+  }
+
+  .logo-crest::after {
+    content: '';
+    position: absolute;
+    width: 40px; height: 40px;
+    border: 1px solid var(--navy);
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+
+  .logo-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--navy);
+    display: block;
+  }
+
+  .logo-en {
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 2px;
+    display: block;
+    margin-top: -1px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-search {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .header-search input {
+    border: none;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-family: inherit;
+    width: 180px;
+    outline: none;
+    background: var(--bg);
+  }
+
+  .header-search button {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 1px;
+  }
+
+  /* ====== NAV ====== */
+  .main-nav {
+    background: var(--navy);
+    padding: 0 24px;
+  }
+
+  .main-nav-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    letter-spacing: 1px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .main-nav a:first-child { border-left: 1px solid rgba(255,255,255,0.08); }
+  .main-nav a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .main-nav a.current { background: var(--navy-light); color: #fff; }
+
+  /* ====== BREADCRUMB ====== */
+  .breadcrumb {
+    padding: 10px 24px;
+    font-size: 11px;
+    color: var(--text-faint);
+    background: var(--white);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .breadcrumb-inner { max-width: 1060px; margin: 0 auto; }
+  .breadcrumb a { color: var(--blue); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { margin: 0 6px; color: var(--border); }
+
+  /* ====== KEY VISUAL ====== */
+  .kv {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: 48px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .kv-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  .kv h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .kv-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 2;
+    max-width: 640px;
+  }
+
+  /* ====== IMPORTANT NOTICE ====== */
+  .notice-bar {
+    background: #FFFBE6;
+    border-bottom: 1px solid #E8DFA0;
+    padding: 12px 24px;
+  }
+
+  .notice-bar-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 12px;
+    color: #7A6B20;
+  }
+
+  .notice-icon {
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding-top: 1px;
+  }
+
+  /* ====== PAGE LAYOUT ====== */
+  .page-layout {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+  }
+
+  .main-content {}
+
+  /* ====== CONTENT SECTIONS ====== */
+  .content-section {
+    margin-bottom: 40px;
+  }
+
+  .content-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--navy);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .content-section-title::before {
+    content: '';
+    width: 4px;
+    height: 18px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .content-text {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 2.2;
+    margin-bottom: 16px;
+  }
+
+  /* ====== MISSION LIST ====== */
+  .mission-list { }
+
+  .mission-item {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .mission-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--navy);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .mission-item-content h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .mission-item-content p {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.9;
+  }
+
+  /* ====== CASE RECORDS (対応実績) ====== */
+  .case-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .case-table thead {
+    background: var(--navy);
+    color: #fff;
+  }
+
+  .case-table th {
+    padding: 10px 12px;
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: 1px;
+    font-size: 11px;
+  }
+
+  .case-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+    color: var(--text-light);
+  }
+
+  .case-table tbody tr:hover { background: var(--blue-pale); }
+
+  .case-table .case-id {
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .case-status {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    display: inline-block;
+  }
+
+  .case-status.done { background: #E8F5E9; color: #2E7D32; }
+  .case-status.ongoing { background: #FFF3E0; color: #E65100; }
+  .case-status.monitoring { background: var(--blue-pale); color: var(--blue); }
+
+  .case-note {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-top: 12px;
+    line-height: 1.8;
+  }
+
+  /* ====== ORG TABLE ====== */
+  .org-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .org-table tr { border-bottom: 1px solid var(--border-light); }
+  .org-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-faint);
+    background: var(--blue-pale);
+    width: 180px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  .org-table td {
+    padding: 12px 16px;
+    color: var(--text);
+    background: var(--white);
+  }
+
+  /* ====== NEWS LIST ====== */
+  .news-list {}
+
+  .news-row {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
+    font-size: 13px;
+  }
+
+  .news-date-col {
+    min-width: 90px;
+    font-size: 12px;
+    color: var(--text-faint);
+    letter-spacing: 0.5px;
+    padding-top: 1px;
+  }
+
+  .news-cat {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 8px;
+    border: 1px solid;
+    letter-spacing: 1px;
+    min-width: 64px;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 2px;
+  }
+
+  .news-cat.dispatch { color: var(--blue); border-color: var(--blue); }
+  .news-cat.announce { color: var(--accent); border-color: var(--accent); }
+  .news-cat.recruit { color: #2E7D32; border-color: #2E7D32; }
+  .news-cat.report { color: var(--text-faint); border-color: var(--border); }
+
+  .news-title {
+    flex: 1;
+    color: var(--text);
+  }
+
+  .news-title a { color: var(--blue); text-decoration: none; }
+  .news-title a:hover { text-decoration: underline; }
+
+  /* ====== SIDEBAR ====== */
+  .sidebar {}
+
+  .side-box {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    margin-bottom: 20px;
+  }
+
+  .side-box-title {
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+
+  .side-box-body {
+    padding: 16px;
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.9;
+  }
+
+  .side-box-body a {
+    color: var(--blue);
+    text-decoration: none;
+    display: block;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 12px;
+  }
+
+  .side-box-body a:last-child { border-bottom: none; }
+  .side-box-body a:hover { text-decoration: underline; }
+  .side-box-body a::before { content: '\25B6'; font-size: 8px; margin-right: 6px; color: var(--blue); }
+
+  .side-contact {
+    background: var(--blue-pale);
+    border: 1px solid var(--border);
+    padding: 20px 16px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .side-contact-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .side-contact-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .side-contact-note {
+    font-size: 10px;
+    color: var(--text-faint);
+    line-height: 1.6;
+  }
+
+  .alert-level-display {
+    text-align: center;
+    padding: 20px 16px;
+  }
+
+  .alert-level-label {
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .alert-level-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+
+  .alert-level-desc {
+    font-size: 10px;
+    color: var(--text-faint);
+    margin-top: 4px;
+  }
+
+  /* ====== FOOTER ====== */
+  footer {
+    background: var(--navy-dark);
+    color: rgba(255,255,255,0.4);
+    padding: 32px 24px 16px;
+    margin-top: 0;
+  }
+
+  .footer-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-org {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .footer-org-en {
+    font-size: 10px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 1px;
+  }
+
+  .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+  .footer-bottom {
+    font-size: 10px;
+    color: rgba(255,255,255,0.2);
+    text-align: center;
+  }
+
+  .footer-legal {
+    font-size: 9px;
+    color: rgba(255,255,255,0.12);
+    margin-top: 12px;
+    text-align: center;
+    line-height: 1.8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .page-layout { grid-template-columns: 1fr; }
+    .header-inner { flex-direction: column; height: auto; padding: 12px 0; gap: 8px; }
+    .main-nav-inner { flex-wrap: wrap; }
+    .main-nav a { padding: 8px 12px; font-size: 11px; }
+    .gov-top-bar-inner { font-size: 9px; }
+    .kv h1 { font-size: 20px; }
+    .header-search input { width: 120px; }
+    .footer-top { flex-direction: column; gap: 16px; }
+    .case-table { font-size: 11px; }
+    .case-table th, .case-table td { padding: 8px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== GOV TOP BAR ====== -->
+<div class="gov-top-bar">
+  <div class="gov-top-bar-inner">
+    <span>特定災害復旧支援事業団</span>
+    <div>
+      <span class="font-size-btns"><span>小</span><span>中</span><span>大</span></span>
+      <a href="#">English</a>
+      <a href="#">サイトマップ</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== HEADER ====== -->
+<header>
+  <div class="header-inner">
+    <a class="logo-area" href="#">
+      <div class="logo-crest">CF</div>
+      <div>
+        <span class="logo-jp">特定災害復旧支援事業団</span>
+        <span class="logo-en">CLEARFIELD ─ Special Disaster Recovery Agency</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <div class="header-search">
+        <input type="text" placeholder="サイト内検索">
+        <button>検索</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ====== NAV ====== -->
+<nav class="main-nav">
+  <div class="main-nav-inner">
+    <a href="#" class="current">トップページ</a>
+    <a href="#mission">事業内容</a>
+    <a href="#records">対応実績</a>
+    <a href="#org">組織概要</a>
+    <a href="#news">お知らせ</a>
+    <a href="#">情報公開</a>
+    <a href="#">調達情報</a>
+    <a href="#">採用情報</a>
+    <a href="#">お問い合わせ</a>
+  </div>
+</nav>
+
+<!-- ====== BREADCRUMB ====== -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="#">トップページ</a>
+  </div>
+</div>
+
+<!-- ====== KEY VISUAL ====== -->
+<section class="kv">
+  <div class="kv-inner">
+    <h1>市民生活の安全を守り、<br>日常を静かに取り戻す。</h1>
+    <p class="kv-desc">
+      CLEARFIELDは、通常の防災体制では対処が困難な特定自然現象に起因する被害に対し、<br>
+      迅速な現場復旧・環境浄化・被害者支援を行う国管轄の専門事業団です。
+    </p>
+  </div>
+</section>
+
+<!-- ====== NOTICE BAR ====== -->
+<div class="notice-bar">
+  <div class="notice-bar-inner">
+    <span class="notice-icon">【重要】</span>
+    <span>特定自然現象に遭遇した場合は、現場から速やかに離れ、最寄りの自治体窓口またはCLEARFIELD連絡先（████-████-████）までご通報ください。現場周辺での撮影・SNS投稿はお控えいただくようお願いいたします。</span>
+  </div>
+</div>
+
+<!-- ====== PAGE LAYOUT ====== -->
+<div class="page-layout">
+  <div class="main-content">
+
+    <!-- ====== ABOUT ====== -->
+    <div class="content-section">
+      <h2 class="content-section-title">事業団について</h2>
+      <p class="content-text">
+        特定災害復旧支援事業団（通称：CLEARFIELD）は、特定自然現象対策特別措置法に基づき2003年に設立された国管轄の専門機関です。
+        前身である████対策室（1997年設置）の業務を引き継ぎ、全国47拠点に約1,200名の職員を配置し、24時間365日の即応体制を維持しています。
+      </p>
+      <p class="content-text">
+        当事業団は、特定自然現象による被害が市民生活に及ぼす影響を最小限にとどめるため、
+        現場の迅速な復旧と環境浄化、被害を受けられた方への支援、そして社会的混乱の防止に努めております。
+        事案の性質上、活動の詳細について公開が制限される場合がありますが、可能な範囲で情報提供に努めてまいります。
+      </p>
+    </div>
+
+    <!-- ====== MISSION ====== -->
+    <div class="content-section" id="mission">
+      <h2 class="content-section-title">事業内容</h2>
+
+      <div class="mission-list">
+        <div class="mission-item">
+          <div class="mission-num">1</div>
+          <div class="mission-item-content">
+            <h4>現場復旧・修繕事業</h4>
+            <p>特定自然現象によって損壊した建造物・道路・インフラ設備等の修復を行います。独自の復元工法により、被害発生前と同等の状態への原状回復を目標としています。</p>
+          </div>
+        </div>
+        <div class="mission-item">
+          <div class="mission-num">2</div>
+          <div class="mission-item-content">
+            <h4>環境浄化事業</h4>
+            <p>現象発生後に残留する異常物質やエネルギーの除去と安全確認を実施します。専用の計測機材による精密検査のうえ、生活環境の安全が確認されるまで継続的に浄化処理を行います。</p>
+          </div>
+        </div>
+        <div class="mission-item">
+          <div class="mission-num">3</div>
+          <div class="mission-item-content">
+            <h4>被害者支援事業</h4>
+            <p>特定自然現象による被害を受けた方への医療支援・生活再建支援・心理的ケアを提供します。指定医療機関への紹介、経過観察、必要に応じた補償制度の案内を行います。</p>
+          </div>
+        </div>
+        <div class="mission-item">
+          <div class="mission-num">4</div>
+          <div class="mission-item-content">
+            <h4>広報・情報管理事業</h4>
+            <p>現象に関する情報の適切な管理と、周辺住民の方への説明対応を行います。関係省庁・自治体と連携し、正確な情報提供と社会的混乱の防止に取り組みます。</p>
+          </div>
+        </div>
+        <div class="mission-item">
+          <div class="mission-num">5</div>
+          <div class="mission-item-content">
+            <h4>調査研究事業</h4>
+            <p>特定自然現象の発生傾向の分析、復旧技術の研究開発、対処装備の改良を行います。研究成果は現場対応の質の向上と、今後の予防施策の立案に活用されます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== CASE RECORDS (対応実績) ====== -->
+    <!--
+      ================================================
+      対応実績の追加方法：
+      下記テーブルの <tbody> 内に以下の形式で行を追加してください。
+
+      <tr>
+        <td class="case-id">CF-YYYY-NNNN</td>
+        <td>YYYY.MM.DD</td>
+        <td>地域名</td>
+        <td>対応内容の概要</td>
+        <td><span class="case-status done">対応完了</span></td>
+      </tr>
+
+      ステータスは以下の3種類：
+        done      = 対応完了（緑）
+        ongoing   = 対応中（オレンジ）
+        monitoring = 経過観察（青）
+      ================================================
+    -->
+    <div class="content-section" id="records">
+      <h2 class="content-section-title">対応実績</h2>
+
+      <table class="case-table">
+        <thead>
+          <tr>
+            <th>案件番号</th>
+            <th>発生日</th>
+            <th>地域</th>
+            <th>概要</th>
+            <th>状況</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="case-id">CF-2026-0318</td>
+            <td>2026.03.18</td>
+            <td>██県██市</td>
+            <td>商業施設周辺における構造物損壊および地表面の異常変色。半径200m圏内の環境浄化作業を実施。</td>
+            <td><span class="case-status ongoing">対応中</span></td>
+          </tr>
+          <tr>
+            <td class="case-id">CF-2026-0305</td>
+            <td>2026.03.05</td>
+            <td>████市</td>
+            <td>住宅地における原因不明の低温現象。給水管凍結被害の修復、路面復旧および残留エネルギーの除去を完了。</td>
+            <td><span class="case-status monitoring">経過観察</span></td>
+          </tr>
+          <tr>
+            <td class="case-id">CF-2026-0228</td>
+            <td>2026.02.28</td>
+            <td>██県██町</td>
+            <td>山林内における地形異常変動。林道の復旧および周辺土壌の安定化処理を完了。立入制限を段階的に解除。</td>
+            <td><span class="case-status done">対応完了</span></td>
+          </tr>
+          <tr>
+            <td class="case-id">CF-2026-0214</td>
+            <td>2026.02.14</td>
+            <td>██区</td>
+            <td>集合住宅の壁面に生じた原因不明の損壊。構造補修および外壁復旧を実施。住民██名に対する健康調査を完了。</td>
+            <td><span class="case-status done">対応完了</span></td>
+          </tr>
+          <tr>
+            <td class="case-id">CF-2026-0130</td>
+            <td>2026.01.30</td>
+            <td>██県████</td>
+            <td>河川敷における水質異常。浄化処理および上流域の調査を実施。原因物質の特定に至り、除去を完了。</td>
+            <td><span class="case-status done">対応完了</span></td>
+          </tr>
+          <tr>
+            <td class="case-id">CF-2026-0115</td>
+            <td>2026.01.15</td>
+            <td>北海道██郡</td>
+            <td>森林内における異常な高温域の発生。鎮静化処理および周辺の環境モニタリングを継続実施。</td>
+            <td><span class="case-status done">対応完了</span></td>
+          </tr>
+          <tr>
+            <td class="case-id">CF-2025-1208</td>
+            <td>2025.12.08</td>
+            <td>██県██市</td>
+            <td>工場跡地における特定自然現象。詳細は非公開。現場復旧および情報管理を完了。</td>
+            <td><span class="case-status done">対応完了</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="case-note">
+        ※ 特定自然現象対策特別措置法第██条に基づき、案件の詳細（正確な所在地・被害規模・関係者情報等）は非公開となる場合があります。<br>
+        ※ 掲載されている実績は公開が許可された案件のみです。実際の対応件数は上記に限りません。
+      </p>
+    </div>
+
+    <!-- ====== ORG INFO ====== -->
+    <div class="content-section" id="org">
+      <h2 class="content-section-title">組織概要</h2>
+
+      <table class="org-table">
+        <tr><th>正式名称</th><td>特定災害復旧支援事業団</td></tr>
+        <tr><th>通称</th><td>CLEARFIELD（クリアフィールド）</td></tr>
+        <tr><th>設立</th><td>2003年（前身：████対策室 / 1997年設置）</td></tr>
+        <tr><th>根拠法令</th><td>特定自然現象対策特別措置法（████年制定）</td></tr>
+        <tr><th>主務官庁</th><td>████省 特別対策局</td></tr>
+        <tr><th>理事長</th><td>██ ██（第4代 / 2023年就任）</td></tr>
+        <tr><th>本部所在地</th><td>██都██区████ 2-██-██</td></tr>
+        <tr><th>職員数</th><td>約1,200名（うちフィールドオペレーター480名）</td></tr>
+        <tr><th>全国拠点</th><td>47拠点（各都道府県に1拠点以上配置）</td></tr>
+        <tr><th>年間予算</th><td>████億円（国家特別会計より拠出）</td></tr>
+      </table>
+    </div>
+
+    <!-- ====== NEWS ====== -->
+    <div class="content-section" id="news">
+      <h2 class="content-section-title">お知らせ</h2>
+
+      <div class="news-list">
+        <div class="news-row"><span class="news-date-col">2026.03.21</span><span class="news-cat dispatch">対応</span><span class="news-title"><a href="#">██県██市における特定自然現象への対応を開始しました</a></span></div>
+        <div class="news-row"><span class="news-date-col">2026.03.15</span><span class="news-cat report">報告</span><span class="news-title"><a href="#">2025年度年次活動報告書を公開しました（一部開示制限あり）</a></span></div>
+        <div class="news-row"><span class="news-date-col">2026.03.05</span><span class="news-cat dispatch">対応</span><span class="news-title"><a href="#">████市における対応が完了し、経過観察期間に移行しました</a></span></div>
+        <div class="news-row"><span class="news-date-col">2026.02.20</span><span class="news-cat recruit">採用</span><span class="news-title"><a href="#">2026年度フィールドオペレーター採用試験の実施について</a></span></div>
+        <div class="news-row"><span class="news-date-col">2026.02.14</span><span class="news-cat announce">告知</span><span class="news-title"><a href="#">観測網更新に伴う一部地域におけるセンサー交換作業のお知らせ</a></span></div>
+        <div class="news-row"><span class="news-date-col">2026.01.30</span><span class="news-cat report">報告</span><span class="news-title"><a href="#">特定自然現象発生傾向分析レポート（2025年版）を関係機関に配布しました</a></span></div>
+        <div class="news-row"><span class="news-date-col">2026.01.10</span><span class="news-cat dispatch">対応</span><span class="news-title"><a href="#">██県██町における対応が完了しました</a></span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ====== SIDEBAR ====== -->
+  <aside class="sidebar">
+    <div class="side-box">
+      <div class="side-box-title">現在の警戒レベル</div>
+      <div class="alert-level-display">
+        <div class="alert-level-label">ALERT LEVEL</div>
+        <div class="alert-level-value">LEVEL 2</div>
+        <div class="alert-level-desc">一部地域で対応中の案件あり</div>
+      </div>
+    </div>
+
+    <div class="side-contact">
+      <div class="side-contact-title">緊急連絡先</div>
+      <div class="side-contact-num">████-████-████</div>
+      <div class="side-contact-note">24時間対応<br>特定自然現象の目撃・被害に関するご通報</div>
+    </div>
+
+    <div class="side-box">
+      <div class="side-box-title">関連リンク</div>
+      <div class="side-box-body">
+        <a href="#">████省 特別対策局</a>
+        <a href="#">特定自然現象に関するQ&amp;A</a>
+        <a href="#">指定医療機関一覧</a>
+        <a href="#">年次活動報告書</a>
+        <a href="#">情報公開請求について</a>
+        <a href="#">採用情報</a>
+      </div>
+    </div>
+
+    <div class="side-box">
+      <div class="side-box-title">事業団からのお願い</div>
+      <div class="side-box-body" style="font-size:11px; line-height:1.9; color:var(--text-light);">
+        特定自然現象に遭遇された場合は、ご自身の安全を最優先に現場から離れてください。<br><br>
+        現場の写真・動画のSNS等への投稿は、復旧作業に支障をきたす恐れがありますのでお控えください。<br><br>
+        ご不明な点は上記連絡先までお問い合わせください。
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-org">特定災害復旧支援事業団</div>
+        <div class="footer-org-en">CLEARFIELD ─ Special Disaster Recovery Agency</div>
+      </div>
+      <div class="footer-links">
+        <a href="#">利用規約</a>
+        <a href="#">個人情報保護方針</a>
+        <a href="#">情報公開</a>
+        <a href="#">ウェブアクセシビリティ</a>
+        <a href="#">サイトマップ</a>
+        <a href="#">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 特定災害復旧支援事業団（CLEARFIELD）
+    </div>
+    <div class="footer-legal">
+      本サイトに掲載されている情報の一部は、特定自然現象対策特別措置法に基づき開示制限の対象となっています。
+      掲載情報の無断転載・複製を禁じます。情報公開請求については████省情報公開窓口までお問い合わせください。
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
